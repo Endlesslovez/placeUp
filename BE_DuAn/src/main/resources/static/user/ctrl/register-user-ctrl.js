@@ -40,15 +40,12 @@ app.controller("register-ctrl",function ($scope, $http,$window){
     $scope.create =function(){
         $http.get(api).then(resp => {
             var a = 1;
-            console.log("Bắt đầu kiểm tra check trùng")
             $scope.accounts = resp.data;
-            console.log("Đọc dữ liệu trong list")
             $scope.accounts.forEach(acc => {
 
                 if ($scope.form.username == acc.account.username) {
                     console.log($scope.form.username)
                     console.log(acc.username)
-                    console.log(" trùng")
                     Toast.fire({
                         icon: 'error',
                         title: 'Tài khoản đã tồn tại',
@@ -88,9 +85,7 @@ app.controller("register-ctrl",function ($scope, $http,$window){
                     ]
                 }
                 $http(req).then(response => {
-                    alert("1")
                     $scope.addAuthor();
-                    alert("2")
                     Toast.fire({
                         icon: 'success',
                         title: 'Đăng ký thành công!',
@@ -103,12 +98,9 @@ app.controller("register-ctrl",function ($scope, $http,$window){
                         icon: 'error',
                         title: 'Đăng ký thất bại!',
                     })
-                    // alert("Error create!")
-                    console.log("Error", error)
                 });
 
             }
-            console.log("Kết thúc thêm ")
         });
     }
     $scope.addAuthor= function (){

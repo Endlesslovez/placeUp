@@ -169,7 +169,7 @@ app.controller('cart_admin-ctrl', function ($rootScope, $scope, $http, $filter) 
     $scope.checkColor = 0;
     $scope.PrD = {};
     $scope.checkProduct = function (id, check) {
-
+       console.log("id", id)
         if (check == 0) {
             $scope.checkDesign = id;
         } else if (check == 1) {
