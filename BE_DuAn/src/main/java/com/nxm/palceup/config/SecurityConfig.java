@@ -29,10 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity httpSecurity) throws Exception {
         // Get AuthenticationManager Bean
-        return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userService)
-                .passwordEncoder(passwordEncoder())
-                .and().build();
+        return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(userService).passwordEncoder(passwordEncoder()).and().build();
     }
 
     @Bean
@@ -44,24 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-        http
-                .authorizeRequests()
-                .antMatchers("/api/auth/**", "/user/**", "/rest/user/getAccount", "/rest/guest/**", "/api/product/**", "/rest/user/address", "/rest/user/address/getProvince")
-                .permitAll();
+        http.authorizeRequests().antMatchers("/api/auth/**", "/user/**", "/rest/user/getAccount", "/rest/guest/**", "/api/product/**", "/rest/user/address", "/rest/user/address/getProvince").permitAll();
 
-        http.authorizeRequests().antMatchers("/api/account/**", "/api/category/**", "/api/chart/**")
-                .hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/account/**", "/api/category/**", "/api/chart/**").hasAnyAuthority("ROLE_ADMIN");
 
         http.authorizeRequests().antMatchers("/rest/uácasser/**", "/api/cart/**")
 
                 .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER");
 
-
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/error");
-        http.rememberMe()
-                .tokenValiditySeconds(86400);
-        http.logout()
-                .logoutUrl("/security/logoff")// địa chỉ hệ thống xử lý
+        http.rememberMe().tokenValiditySeconds(86400);
+        http.logout().logoutUrl("/security/logoff")// địa chỉ hệ thống xử lý
                 .logoutSuccessUrl("/security/logoff/success");
         http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
     }

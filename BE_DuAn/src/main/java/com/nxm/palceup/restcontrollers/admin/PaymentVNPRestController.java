@@ -111,7 +111,6 @@ public class PaymentVNPRestController {
         String queryUrl = query.toString();
         String vnp_SecureHash = VNPayConfig.hmacSHA512(VNPayConfig.vnp_HashSecret, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
-        System.out.println(hashData.toString());
 
         mapper = new ObjectMapper();
         node = mapper.createObjectNode();

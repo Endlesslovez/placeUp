@@ -167,8 +167,6 @@ app.controller('cart_user-ctrl', function ($rootScope, $scope, $http, $window, $
                                 }, 2000);
                                 sweetError('Mời bạn đăng nhập !');
                             }
-                            console.log("err order", err);
-                            alert(err + "lỗi");
                         }
                     }
                 }

@@ -105,14 +105,12 @@ public class BillRestController {
                 billOld.setStatus(5);
                 billOld.setTotalMoney(BigDecimal.valueOf(0));
                 sendMailService.sendEmailBill("nguyentungduonglk1@gmail.com", "iscdvtuyqsfpwmbp", billOld.getAccount().getEmail(), billOld.getPersonTake(), billOld);
-                System.out.println("gửi mail yahfnh công");
                  billService.updateStatus(billOld);
                 }
                 if (billOld.getTypePayment()==false){
                     billOld.setStatus(5);
 //                    billOld.setTotalMoney(BigDecimal.valueOf(0));
                     sendMailService.sendEmailBill("nguyentungduonglk1@gmail.com", "iscdvtuyqsfpwmbp", billOld.getAccount().getEmail(), billOld.getPersonTake(), billOld);
-                    System.out.println("gửi mail yahfnh công");
                      billService.updateStatus(billOld);
                 }
             }
@@ -143,7 +141,6 @@ public class BillRestController {
                 billOld.setStatus(bill.getStatus());
 //                billOld.setTotalMoney(BigDecimal.valueOf(0));
                 sendMailService.sendEmailBill("nguyentungduonglk1@gmail.com", "iscdvtuyqsfpwmbp", billOld.getAccount().getEmail(), billOld.getPersonTake(), billOld);
-                System.out.println("gửi mail yahfnh công");
                 return billService.updateStatus(billOld);
 
             }
@@ -200,7 +197,6 @@ public class BillRestController {
             billOld.setDescription(bill.getDescription());
             billService.update(billOld, billOld.getId());
             sendMailService.sendEmailBill("nguyentungduonglk1@gmail.com", "iscdvtuyqsfpwmbp", billOld.getAccount().getEmail(), billOld.getPersonTake(), billOld);
-            System.out.println("gửi mail yahfnh công");
             return billOld;
         }
         return null;
@@ -208,8 +204,6 @@ public class BillRestController {
 
     @GetMapping("/sumStatus/{number}")
     public Integer sumStatus(@PathVariable(value = "number")String number){
-//        int sts = Integer.parseInt(number);
-//        System.out.println(billService.sumStatus(number));
         return billService.sumStatus(number);
     }
 }

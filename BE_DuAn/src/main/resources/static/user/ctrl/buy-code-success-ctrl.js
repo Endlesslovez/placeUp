@@ -94,7 +94,6 @@ app.controller('buy-cod-success-ctrl',function($scope,$window,$timeout,$http){
             $scope.show();
         } else {
             $scope.ThanhToanBillvabilldetailCHuathanhtoan();
-            alert("lỗi");
         }
     };
 
